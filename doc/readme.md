@@ -169,6 +169,78 @@
 
 ## 4 - Linux File System
 
+![alt text](image-131.png)
+
+![alt text](image-138.png)
+
+![alt text](image-139.png)
+
+![alt text](image-140.png)
+
+![alt text](image-141.png)
+
+![alt text](image-142.png)
+![alt text](image-143.png)
+
+![alt text](image-144.png)
+
+to commands in sbin directory which are used for system administration.
+
+to exicute commands in sbin directory you need to have root access.
+
+examples
+to shutdown the system
+
+```bash
+sudo /sbin/shutdown -h now
+```
+
+![alt text](image-145.png)
+
+![alt text](image-146.png)
+
+normally used by system administrator to perform system administration tasks.
+
+![alt text](image-147.png)
+![alt text](image-148.png)
+
+![alt text](image-149.png)
+![alt text](image-150.png)
+![alt text](image-151.png)
+![alt text](image-152.png)
+![alt text](image-153.png)
+![alt text](image-154.png)
+if you install docker on the home directory. other users will not be able to use it.
+![alt text](image-155.png)
+
+![alt text](image-156.png)
+![alt text](image-157.png)
+
+![alt text](image-158.png)
+![alt text](image-159.png)
+
+![alt text](image-160.png)
+![alt text](image-161.png)
+![alt text](image-162.png)
+
+![alt text](image-163.png)
+![alt text](image-164.png)
+
+![alt text](image-165.png)
+![alt text](image-166.png)
+
+![alt text](image-167.png)
+![alt text](image-168.png)
+
+![alt text](image-169.png)
+![alt text](image-170.png)
+![alt text](image-171.png)
+
+![alt text](image-172.png)
+![alt text](image-173.png)
+![alt text](image-174.png)
+![alt text](image-175.png)
+
 ## 5 - Introduction to Command Line Interface (CLI - Part 1)
 
 ## 6 - Basic Linux Commands (CLI - Part 2)
