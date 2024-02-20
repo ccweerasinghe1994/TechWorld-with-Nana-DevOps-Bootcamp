@@ -253,6 +253,37 @@ if you install docker on the home directory. other users will not be able to use
 
 ## 6 - Basic Linux Commands (CLI - Part 2)
 
+![alt text](image-183.png)
+![alt text](image-184.png)
+![alt text](image-185.png)
+![alt text](image-186.png)
+![alt text](image-187.png)
+![alt text](image-188.png)
+![alt text](image-189.png)
+
+![alt text](image-190.png)
+![alt text](image-191.png)
+![alt text](image-192.png)
+![alt text](image-193.png)
+![alt text](image-194.png)
+![alt text](image-195.png)
+![alt text](image-196.png)
+![alt text](image-197.png)
+![alt text](image-198.png)
+root
+![alt text](image-199.png)
+![alt text](image-200.png)
+![alt text](image-203.png)
+
+![alt text](image-204.png)
+![alt text](image-205.png)
+![alt text](image-206.png)
+![alt text](image-207.png)
+![  ](image-208.png)
+![alt text](image-209.png)
+![ ](image-210.png)
+![alt text](image-211.png)
+
 ## 7 - Package Manager - Installing Software on Linux
 
 ## 8 - Working with Vim Editor
