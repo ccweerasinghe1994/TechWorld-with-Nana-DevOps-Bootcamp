@@ -283,6 +283,20 @@ root
 ![alt text](image-209.png)
 ![ ](image-210.png)
 ![alt text](image-211.png)
+![alt text](image-212.png)
+![alt text](image-213.png)
+![alt text](image-214.png)
+![alt text](image-215.png)
+![alt text](image-216.png)
+![alt text](image-217.png)
+![alt text](image-218.png)
+![alt text](image-219.png)
+![alt text](image-223.png)
+![alt text](image-224.png)
+![alt text](image-225.png)
+![alt text](image-226.png)
+![alt text](image-227.png)
+![alt text](image-228.png)
 
 ## 7 - Package Manager - Installing Software on Linux
 
