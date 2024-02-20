@@ -242,7 +242,14 @@ if you install docker on the home directory. other users will not be able to use
 ![alt text](image-175.png)
 ![alt text](image-176.png)
 ![alt text](image-177.png)
+
 ## 5 - Introduction to Command Line Interface (CLI - Part 1)
+
+![alt text](image-178.png)
+![alt text](image-179.png)
+![alt text](image-180.png)
+![alt text](image-181.png)
+![  ](image-182.png)
 
 ## 6 - Basic Linux Commands (CLI - Part 2)
 
