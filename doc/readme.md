@@ -358,6 +358,34 @@ root
 
 ## 8 - Working with Vim Editor
 
+![alt text](image-282.png)
+![alt text](image-283.png)
+![alt text](image-284.png)
+![alt text](image-285.png)
+![alt text](image-286.png)
+![alt text](image-287.png)
+![alt text](image-288.png)
+
+![alt text](image-289.png)
+![alt text](image-290.png)
+![alt text](image-291.png)
+![alt text](image-292.png)
+![alt text](image-293.png)
+![alt text](image-294.png)
+![alt text](image-296.png)
+![alt text](image-295.png)
+![alt text](image-297.png)
+![alt text](image-298.png)
+![alt text](image-299.png)
+![alt text](image-300.png)
+![alt text](image-301.png)
+![alt text](image-302.png)
+![alt text](image-303.png)
+![alt text](image-304.png)
+![alt text](image-305.png)
+![alt text](image-307.png)
+![alt text](image-308.png)
+
 ## 9 - Linux Accounts & Groups (Users & Permissions Part 1)
 
 ## 10 - File Ownership & Permissions (Users & Permissions - Part 2)
@@ -379,6 +407,9 @@ root
 ## 0 - Module Intro + Checklist
 
 ## 1 - Introduction to Version Control and Git
+
+![alt text](image-309.png)
+![alt text](image-310.png)
 
 ## 2 - Basic Concepts of Git
 
