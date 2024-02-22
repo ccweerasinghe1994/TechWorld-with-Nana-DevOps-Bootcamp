@@ -388,6 +388,174 @@ root
 
 ## 9 - Linux Accounts & Groups (Users & Permissions Part 1)
 
+there are three types of users in linux
+
+1. root user
+
+    root user is the super user who has all the privileges to do anything on the system.
+
+2. system users
+
+    system users are the users who are created by the system for the system services.
+3. service users
+
+    service users are the users who are created by the system for the services.
+
+![alt text](image-328.png)
+![alt text](image-329.png)
+![alt text](image-331.png)
+![alt text](image-333.png)
+![alt text](image-334.png)
+![alt text](image-335.png)
+![alt text](image-336.png)
+
+![alt text](image-337.png)
+![alt text](image-338.png)
+![alt text](image-339.png)
+![alt text](image-340.png)
+
+![D](image-341.png)
+![alt text](image-342.png)
+![alt text](image-343.png)
+![alt text](image-344.png)
+
+![alt text](image-345.png)
+![alt text](image-346.png)
+![alt text](image-347.png)
+![alt text](image-348.png)
+
+![alt text](image-349.png)
+![alt text](image-350.png)
+![alt text](image-351.png)
+![alt text](image-352.png)
+![alt text](image-353.png)
+![alt text](image-354.png)
+![alt text](image-355.png)
+![alt text](image-356.png)
+![alt text](image-357.png)
+![alt text](image-358.png)
+![alt text](image-359.png)
+![alt text](image-360.png)
+![alt text](image-361.png)
+![alt text](image-362.png)
+![alt text](image-363.png)
+![alt text](image-364.png)
+
+to login as a root user
+
+```bash
+sudo su
+```
+
+![alt text](image-365.png)
+
+how to create a new group
+
+```bash
+sudo groupadd groupname
+```
+
+to see the groups
+
+```bash
+cat /etc/group
+```
+
+```bash
+➜  ~ cat /etc/group
+root:x:0:
+daemon:x:1:
+ccw:x:1000:
+docker:x:1001:ccw
+test:x:1002:
+tom:x:1003:
+devops:x:1004: // we can see the group devops
+```
+
+![alt text](image-366.png)
+
+![alt text](image-367.png)
+![alt text](image-368.png)
+![alt text](image-369.png)
+![alt text](image-370.png)
+
+useradd example
+![alt text](image-371.png)
+
+```bash
+# -m is used to create the home directory
+# -d is used to specify the home directory
+# -s is used to specify the shell
+sudo useradd -m -d /home/username -s /bin/bash username
+```
+
+let's add devops group to tom user as a primary group
+
+```bash
+sudo usermod -g devops tom
+```
+
+since we are adding the group as a primary group we don't need to specify the `-a` option.
+
+let's delete the tom group
+
+```bash
+sudo delgroup tom
+```
+
+```bash
+sudo usermod -G devops,abc,test tom
+# this will add the user to the groups devops, abc and test
+# this will overwrite the existing groups
+```
+
+if we want to add the user to the groups without overwriting the existing groups we can use the `-a` option
+
+```bash
+sudo usermod -a -G devops,abc,test tom
+```
+
+how to print logged in user groups
+
+```bash
+groups
+```
+
+how to print the groups of a user
+
+```bash
+groups username
+```
+
+![alt text](image-372.png)
+
+let's create a new user and add it to the devops group.
+
+```bash
+sudo useradd -G devops nicole
+```
+
+but in this approach we still creates the default group for the user.
+
+to avoid creating the default group for the user we can use the `-N` option
+
+```bash
+sudo useradd -G devops -N nicole
+```
+
+let's remove user nicole from group devops
+
+```bash
+sudo deluser nicole devops
+```
+
+or
+
+```bash
+# -d is used to delete the user from the group
+sudo gpasswd -d nicole devops
+```
+
 ## 10 - File Ownership & Permissions (Users & Permissions - Part 2)
 
 ## 11 - Basic Linux Commands - Pipes & Redirects (CLI - Part 3)
@@ -413,7 +581,26 @@ root
 
 ## 2 - Basic Concepts of Git
 
+![alt text](image-317.png)
+![alt text](image-318.png)
+![alt text](image-319.png)
+![alt text](image-320.png)
+![alt text](image-321.png)
+![alt text](image-322.png)
+
+![alt text](image-312.png)
+![alt text](image-311.png)
+![alt text](image-313.png)
+![alt text](image-314.png)
+![alt text](image-315.png)
+![alt text](image-316.png)
+
 ## 3 - Setup Git Repository Remote and Local
+
+![alt text](image-323.png)
+![alt text](image-324.png)
+![alt text](image-325.png)
+![alt text](image-327.png)
 
 ## 4 - Working with Git
 
