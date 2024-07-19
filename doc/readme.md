@@ -573,10 +573,317 @@ sudo gpasswd -d nicole devops
 ![alt text](image-382.png)
 ![alt text](image-383.png)
 
-
+```bash
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ ./setup.sh
+bash: ./setup.sh: Permission denied
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ 
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ ls -l setup.sh
+-rw-rw-r-- 1 chamara chamara 46 Jul 19 11:52 setup.sh
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ sudo chmod u+x setup.sh
+[sudo] password for chamara: 
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ ls -l setup.sh
+-rwxrw-r-- 1 chamara chamara 46 Jul 19 11:52 setup.sh
+chamara@chamara-VirtualBox:~/Documents/shelscripts$ 
+```
 
 
 ## 13 - Shell Scripting Part 2 - Concepts & Syntax
+![alt text](image-384.png)
+![alt text](image-385.png)
+![alt text](image-386.png)
+![alt text](image-387.png)
+![alt text](image-388.png)
+
+Basic Operators
+
+File Test Operators
+
+file test operators are used to check the file properties.
+
+```bash
+# -e is used to check if the file exists
+if [ -e /etc/passwd ]
+then
+    echo "file exists"
+else
+    echo "file does not exist"
+fi
+```
+
+```bash
+
+# -f is used to check if the file is a regular file
+
+if [ -f /etc/passwd ]
+then
+    echo "file is a regular file"
+else
+    echo "file is not a regular file"
+fi
+```
+
+```bash
+# -d is used to check if the file is a directory
+
+if [ -d /etc/passwd ]
+then
+    echo "file is a directory"
+else
+    echo "file is not a directory"
+fi
+```
+
+```bash
+# -s is used to check if the file is empty
+
+if [ -s /etc/passwd ]
+then
+    echo "file is not empty"
+else
+    echo "file is empty"
+fi
+```
+
+```bash
+# -r is used to check if the file is readable
+
+if [ -r /etc/passwd ]
+then
+    echo "file is readable"
+else
+    echo "file is not readable"
+fi
+```
+
+```bash
+# -w is used to check if the file is writable
+
+if [ -w /etc/passwd ]
+then
+    echo "file is writable"
+else
+    echo "file is not writable"
+fi
+```
+
+```bash
+# -x is used to check if the file is executable
+
+if [ -x /etc/passwd ]
+then
+    echo "file is executable"
+else
+    echo "file is not executable"
+fi
+```
+
+```bash
+# -O is used to check if the file is owned by the user
+
+if [ -O /etc/passwd ]
+then
+    echo "file is owned by the user"
+else
+    echo "file is not owned by the user"
+fi
+```
+
+```bash
+# -G is used to check if the file is owned by the group
+
+if [ -G /etc/passwd ]
+then
+    echo "file is owned by the group"
+else
+    echo "file is not owned by the group"
+fi
+```
+
+```bash
+# -N is used to check if the file is newer than the file
+
+if [ /etc/passwd -nt /etc/group ]
+then
+    echo "passwd file is newer than the group file"
+else
+    echo "passwd file is not newer than the group file"
+fi
+```
+
+```bash
+# -O is used to check if the file is older than the file
+
+if [ /etc/passwd -ot /etc/group ]
+then
+    echo "passwd file is older than the group file"
+else
+    echo "passwd file is not older than the group file"
+fi
+```
+![alt text](image-389.png)
+
+![alt text](image-390.png)
+
+Relational Operators
+
+Relational operators are used to compare the values.
+we can use the relational operators to compare the numbers and strings.
+
+
+```bash
+# -eq is used to check if the two values are equal
+
+if [ 10 -eq 10 ]
+then
+    echo "10 is equal to 10"
+else
+    echo "10 is not equal to 10"
+fi
+```
+
+```bash
+# -ne is used to check if the two values are not equal
+
+if [ 10 -ne 20 ]
+then
+    echo "10 is not equal to 20"
+else
+    echo "10 is equal to 20"
+fi
+```
+
+```bash
+# -gt is used to check if the first value is greater than the second value
+
+if [ 10 -gt 20 ]
+then
+    echo "10 is greater than 20"
+else
+    echo "10 is not greater than 20"
+fi
+```
+
+```bash
+# -lt is used to check if the first value is less than the second value
+
+if [ 10 -lt 20 ]
+then
+    echo "10 is less than 20"
+else
+    echo "10 is not less than 20"
+fi
+```
+
+```bash
+# -ge is used to check if the first value is greater than or equal to the second value
+
+if [ 10 -ge 20 ]
+then
+    echo "10 is greater than or equal to 20"
+else
+    echo "10 is not greater than or equal to 20"
+fi
+```
+
+```bash
+# -le is used to check if the first value is less than or equal to the second value
+
+if [ 10 -le 20 ]
+then
+    echo "10 is less than or equal to 20"
+else
+    echo "10 is not less than or equal to 20"
+fi
+```
+
+String Operators
+
+String operators are used to compare the strings.
+
+```bash
+# = is used to check if the two strings are equal
+
+if [ "hello" = "hello" ]
+then
+    echo "hello is equal to hello"
+else
+    echo "hello is not equal to hello"
+fi
+```
+
+```bash
+# != is used to check if the two strings are not equal
+
+if [ "hello" != "world" ]
+then
+    echo "hello is not equal to world"
+else
+    echo "hello is equal to world"
+fi
+```
+
+```bash
+# -z is used to check if the string is empty
+
+if [ -z "hello" ]
+then
+    echo "hello is empty"
+else
+    echo "hello is not empty"
+fi
+```
+
+```bash
+
+# -n is used to check if the string is not empty
+
+if [ -n "hello" ]
+then
+    echo "hello is not empty"
+else
+    echo "hello is empty"
+fi
+```
+
+![alt text](image-391.png)
+![alt text](image-392.png)
+
+
+we can use elif to check multiple conditions
+
+```bash
+if [ condition1 ]
+then
+    echo "condition1 is true"
+elif [ condition2 ]
+then
+    echo "condition2 is true"
+else
+    echo "condition1 and condition2 are false"
+fi
+```
+
+Passing arguments to a script
+
+![alt text](image-393.png)
+
+Posistional Parameters
+
+positional parameters are used to pass the arguments to the script.
+
+```bash
+
+```
+
+![alt text](image-394.png)
+![alt text](image-395.png)
+
+
+Read user Input
+
+![alt text](image-396.png)
+
+
 
 ## 14 - Shell Scripting Part 3 - Concepts & Syntax
 
