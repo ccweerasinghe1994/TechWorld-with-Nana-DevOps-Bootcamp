@@ -561,6 +561,20 @@ sudo gpasswd -d nicole devops
 ## 11 - Basic Linux Commands - Pipes & Redirects (CLI - Part 3)
 
 ## 12 - Introduction to Shell Scripting Part 1
+![alt text](image-373.png)
+![alt text](image-374.png)
+![alt text](image-375.png)
+![alt text](image-376.png)
+![alt text](image-377.png)
+![alt text](image-378.png)
+![alt text](image-379.png)
+![alt text](image-380.png)
+![alt text](image-381.png)
+![alt text](image-382.png)
+![alt text](image-383.png)
+
+
+
 
 ## 13 - Shell Scripting Part 2 - Concepts & Syntax
 
