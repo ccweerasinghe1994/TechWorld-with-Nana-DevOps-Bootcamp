@@ -883,6 +883,49 @@ Read user Input
 
 ![alt text](image-396.png)
 
+```bash
+#!/bin/bash
+
+echo "reading user input"
+
+read -p "Enter your password: " user_password
+
+echo "your password is $user_password"
+```
+
+![alt text](image-397.png)
+
+read all the arguments
+
+```bash
+#!/bin/bash
+
+echo "reading all user input $*"
+```
+```bash
+reading all user input chamara weerasinghe groupadmin
+```
+
+number of arguments
+
+```bash
+#!/bin/bash
+
+echo "number of arguments $#"
+```
+
+
+
+```bash
+reading all user input chamara weerasinghe groupadmin
+reading all user input 3
+```
+![alt text](image-398.png)
+
+Loops
+
+![alt text](image-399.png)
+
 
 
 ## 14 - Shell Scripting Part 3 - Concepts & Syntax
