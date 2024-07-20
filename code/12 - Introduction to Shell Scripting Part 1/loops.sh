@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "this is a sample loop"
+echo "this is a sample loop example"
 
 for param in $* 
     do
