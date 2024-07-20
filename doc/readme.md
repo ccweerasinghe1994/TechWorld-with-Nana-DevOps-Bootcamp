@@ -1467,9 +1467,20 @@ docker exec -it 22 bash
 ```bash
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
+![alt text](image-440.png)
 
+![alt text](image-441.png)
 ## 3 - Introduction to Jenkins UI
+![alt text](image-442.png)
+![alt text](image-443.png)
 
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
 ## 4 - Install Build Tools in Jenkins
 
 ## 5 - Jenkins Basics Demo - Freestyle Job
