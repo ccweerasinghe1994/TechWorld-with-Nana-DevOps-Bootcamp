@@ -1474,17 +1474,79 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ![alt text](image-442.png)
 ![alt text](image-443.png)
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+![alt text](image-444.png)
+![alt text](image-445.png)
+jenkins url is `http://0.0.0.0:8080/`
+
+![alt text](image-446.png)
+
+
 ## 4 - Install Build Tools in Jenkins
+![alt text](image-447.png)
+![alt text](image-448.png)
+![alt text](image-449.png)
+![alt text](image-450.png)
+![alt text](image-451.png)
+![alt text](image-452.png)
+![alt text](image-453.png)
+![alt text](image-454.png)
+
+let's install nodejs inside the jenkins container
+
+let's install nodejs inside the jenkins container as a root user
+
+```bash
+docker exec -u 0 -it 2323 bash
+
+```
+
+check the linux distribution
+
+```bash
+cat /etc/issue
+```
+
+![alt text](image-455.png)
+![alt text](image-456.png)
+
+do package update
+
+```bash
+apt update
+```
+
+let's check the curl version
+
+```bash
+curl --version
+```
+
+let's install curl
+
+```bash
+apt install curl
+```
+let's install nodejs
+
+```bash
+# installs fnm (Fast Node Manager)
+curl -fsSL https://fnm.vercel.app/install | bash
+
+# download and install Node.js
+fnm use --install-if-missing 20
+
+# verifies the right Node.js version is in the environment
+node -v # should print `v20.15.1`
+
+# verifies the right NPM version is in the environment
+npm -v # should print `10.7.0`
+```
+
+
 
 ## 5 - Jenkins Basics Demo - Freestyle Job
-
+now we have installed the nodejs in the jenkins container.
+and configure maven in the jenkins container. using build tools.
 ## 6 - Docker in Jenkins
 
 ## 7 - Freestyle to Pipeline Job
