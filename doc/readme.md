@@ -1284,8 +1284,32 @@ env | less
 ![alt text](image-327.png)
 
 ## 4 - Working with Git
+do a change on to a project and commit the changes
 
+```bash
+git add .
+git commit -m "commit message"
+```
+![alt text](image-407.png)
+![alt text](image-408.png)
+![alt text](image-409.png)
+![alt text](image-410.png)
+![alt text](image-411.png)
+![alt text](image-412.png)
+![alt text](image-413.png)
+![alt text](image-414.png)
 ## 5 - Initialize a Git project locally
+
+![alt text](image-415.png)
+![alt text](image-416.png)
+![alt text](image-417.png)
+![alt text](image-418.png)
+
+
+
+ 
+
+
 
 ## 6 - Concept of Branches
 
@@ -1308,7 +1332,10 @@ env | less
 ## 15 - Merging branches
 
 ## 16 - Git for Devops
-
+![alt text](image-419.png)
+![alt text](image-420.png)
+![alt text](image-421.png)
+![alt text](image-422.png)
 ## 1 - Databases in development process
 
 ## 2 - Database Types
@@ -1408,8 +1435,38 @@ env | less
 ## 0 - Module Intro + Checklist
 
 ## 1 - Intro to Build Automation
-
+![alt text](image-423.png)
+![alt text](image-424.png)
+![alt text](image-425.png)
+![alt text](image-426.png)
+![alt text](image-428.png)
+![alt text](image-429.png)
+![alt text](image-430.png)
+![alt text](image-431.png)
+![alt text](image-432.png)
+![alt text](image-433.png)
+![alt text](image-434.png)
+![alt text](image-435.png)
+![alt text](image-436.png)
+![alt text](image-437.png)
+![alt text](image-438.png)
 ## 2 - Install Jenkins
+```bash
+ocker run -p 8080:8080 -p 50000:50000 -d \
+-v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+```
+
+go to the browser and type `localhost:8080` to access the jenkins
+
+![alt text](image-439.png)
+
+```bash
+docker exec -it 22 bash
+```
+
+```bash
+cat /var/jenkins_home/secrets/initialAdminPassword
+```
 
 ## 3 - Introduction to Jenkins UI
 
