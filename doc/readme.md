@@ -105,6 +105,9 @@
   - [7 - Freestyle to Pipeline Job](#7---freestyle-to-pipeline-job)
   - [8 - Intro to Pipeline Job](#8---intro-to-pipeline-job)
   - [9 - Jenkinsfile Syntax](#9---jenkinsfile-syntax)
+    - [Tools Attribute for Build Tools](#tools-attribute-for-build-tools)
+    - [Using External Scripts in Jenkinsfile](#using-external-scripts-in-jenkinsfile)
+    - [User Input](#user-input)
   - [10 - Create complete Pipeline](#10---create-complete-pipeline)
   - [11 - Intro to Multibranch Pipeline](#11---intro-to-multibranch-pipeline)
   - [12 - Jenkins Jobs Overview](#12---jenkins-jobs-overview)
@@ -1452,7 +1455,7 @@ git commit -m "commit message"
 ![alt text](image-438.png)
 ## 2 - Install Jenkins
 ```bash
-ocker run -p 8080:8080 -p 50000:50000 -d \
+docker run -p 8080:8080 -p 50000:50000 -d \
 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
 ```
 
@@ -1547,17 +1550,551 @@ npm -v # should print `10.7.0`
 ## 5 - Jenkins Basics Demo - Freestyle Job
 now we have installed the nodejs in the jenkins container.
 and configure maven in the jenkins container. using build tools.
-## 6 - Docker in Jenkins
+![alt text](image-459.png)
+![alt text](image-460.png)
+![alt text](image-461.png)
+![alt text](image-457.png)
+![alt text](image-458.png)
+![alt text](image-462.png)
 
+let's create a jenkins job to test and build a maven project.
+
+![alt text](image-463.png)
+
+setup your repository
+
+![alt text](image-464.png)
+
+add two build steps
+
+![alt text](image-466.png)
+![alt text](image-465.png)
+
+and build it 
+
+![alt text](image-467.png)
+
+ ## 6 - Docker in Jenkins 
 ## 7 - Freestyle to Pipeline Job
 
+![alt text](image-468.png)
+![alt text](image-469.png)
+![alt text](image-470.png)
+![alt text](image-471.png)
+![alt text](image-472.png)
+![alt text](image-473.png)
 ## 8 - Intro to Pipeline Job
+![alt text](image-474.png)
+![alt text](image-475.png)
+![alt text](image-476.png)
+![ ](image-477.png)
+![alt text](image-478.png)
+![alt text](image-479.png)
+![alt text](image-480.png)
+![alt text](image-481.png)
 
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
+```
+
+The selected code is a Jenkins pipeline script written in Groovy, designed to automate the build, test, and deployment phases of a software project. Jenkins pipelines are a set of plugins that support implementing and integrating continuous delivery pipelines into Jenkins.
+
+The script starts with the `pipeline` block, which is the foundation of the Pipeline Syntax. This block defines all the stages and steps that Jenkins will execute. The `agent any` directive tells Jenkins that this pipeline can run on any available agent. Agents are essentially executors in Jenkins terminology, where the jobs are run.
+
+```groovy
+pipeline {
+    agent any
+```
+
+Inside the pipeline, there are three main stages defined: `Build`, `Test`, and `Deploy`. Each stage represents a phase in the continuous integration and deployment process.
+
+- The `Build` stage contains steps that are executed to compile the code or build the project. In this case, it's a simple echo command for demonstration purposes.
+
+```groovy
+stage('Build') {
+    steps {
+        echo 'Building..'
+    }
+}
+```
+
+- Following the build, the `Test` stage is defined to run tests on the built code. This is crucial for catching bugs early. Again, an echo command is used here for simplicity.
+
+```groovy
+stage('Test') {
+    steps {
+        echo 'Testing..'
+    }
+}
+```
+
+- Finally, the `Deploy` stage is where the built and tested code is deployed to a server or any environment. This stage is critical for delivering the product to users. Like the previous stages, it uses an echo command to signify the deployment action.
+
+```groovy
+stage('Deploy') {
+    steps {
+        echo 'Deploying....'
+    }
+}
+```
+
+This Jenkinsfile is a basic example of a CI/CD pipeline, demonstrating the automation of the build, test, and deploy phases. In a real-world scenario, each `echo` command would be replaced with actual build, test, and deployment scripts or commands specific to the project's needs.
+
+![alt text](image-482.png)
+![alt text](image-483.png)
+![alt text](image-484.png)
+![alt text](image-485.png)
+![alt text](image-486.png)
+![alt text](image-487.png)
+![alt text](image-488.png)
+![alt text](image-489.png)
 ## 9 - Jenkinsfile Syntax
+ ![alt text](image-490.png)
+ ```groovy
+ pipeline {
+    agent any
 
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+```
+
+The selected code snippet is from a Jenkins pipeline script, specifically focusing on the `post` block. This block is crucial for defining actions that should occur after the main stages of the pipeline (`Build`, `Test`, and `Deploy`) have been executed. The actions within the `post` block are contingent on the outcome of these stages, allowing for a flexible response to the pipeline's execution status.
+
+The `post` block is structured into several sections, each triggered by different conditions:
+
+- `always`: This section ensures that the actions defined within it are executed after every run of the pipeline, regardless of the outcome. It's useful for cleanup tasks or notifications that should occur every time.
+
+```groovy
+always {
+    echo 'This will always run'
+}
+```
+
+- `success`: This section is executed only if the pipeline completes successfully without any errors. It's typically used for success notifications or actions that should only occur on a successful build/test/deploy cycle.
+
+```groovy
+success {
+    echo 'This will run only if successful'
+}
+```
+
+- `failure`: Contrary to `success`, this section runs only if the pipeline fails at any stage. It's useful for sending alerts or performing any necessary rollback actions in case of failure.
+
+```groovy
+failure {
+    echo 'This will run only if failed'
+}
+```
+
+- `unstable`: This section is triggered if the pipeline run is marked as unstable. An unstable status usually indicates that some operations in the pipeline, like tests, did not meet the required criteria, but the pipeline did not fail outright.
+
+```groovy
+unstable {
+    echo 'This will run only if the run was unstable'
+}
+```
+
+- `changed`: This is particularly interesting as it executes actions only if the current pipeline status differs from the last run. This can be useful for notifications or actions that should only happen when there's a change in the pipeline's success or failure status.
+
+```groovy
+changed {
+    echo 'This will run only if the state of the Pipeline has changed'
+}
+```
+
+Each of these sections within the `post` block allows for a nuanced and responsive post-execution phase of the Jenkins pipeline, making it possible to tailor actions closely to the outcomes of the pipeline's execution.
+
+Define Conditions in Jenkinsfile
+
+![alt text](image-491.png)
+
+```groovy
+     environment {
+            // Manually define BRANCH_NAME if not set by Jenkins environment
+            BRANCH_NAME = "${env.BRANCH_NAME ?: 'main'}"
+     }
+     stages {
+        stage('Build') {
+        
+            when {
+                expression { BRANCH_NAME == 'main' }
+            }
+            steps {
+                echo "Building.. in Branch: ${BRANCH_NAME}"
+            }
+        }
+     }
+```
+
+using credentials in jenkinsfile
+
+```groovy
+pipeline {
+    agent any
+
+     environment {
+            // Manually define BRANCH_NAME if not set by Jenkins environment
+            BRANCH_NAME = "${env.BRANCH_NAME ?: 'main'}"
+            SERVER_CREDENTIALS = credentials('server-credentials')
+     }
+
+    stages {
+        stage('Build') {
+
+            when {
+                expression { BRANCH_NAME == 'main' }
+            }
+            steps {
+                echo "Building.. in Branch: ${BRANCH_NAME}"
+                echo "Credentials: ${SERVER_CREDENTIALS}"
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                withCredentials([usernamePassword(credentialsId: 'server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    echo "Deploying to server with username: ${USERNAME} and password: ${PASSWORD}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+```
+
+![alt text](image-492.png)
+
+![alt text](image-493.png)
+
+### Tools Attribute for Build Tools
+
+![alt text](image-494.png)
+![alt text](image-495.png)
+![alt text](image-496.png)
+
+```groovy
+pipeline {
+    agent any
+
+     environment {
+            // Manually define BRANCH_NAME if not set by Jenkins environment
+            BRANCH_NAME = "${env.BRANCH_NAME ?: 'main'}"
+            SERVER_CREDENTIALS = credentials('server-credentials')
+     }
+
+     tools {
+        maven 'maven-3.9.8'
+     }
+```
+
+Parameters in Jenkinsfile
+
+```groovy
+pipeline {
+    agent any
+
+     environment {
+            // Manually define BRANCH_NAME if not set by Jenkins environment
+            BRANCH_NAME = "${env.BRANCH_NAME ?: 'main'}"
+            SERVER_CREDENTIALS = credentials('server-credentials')
+     }
+     parameters {
+        string(name: 'VERSION', defaultValue: '1.0.0', description: 'Version to build')
+        credentials(name: 'SERVER_CREDENTIALS', description: 'Credentials for server')
+        choice(name: 'CHOICE', choices: ['one', 'two', 'three'], description: 'Choose one')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'whether to run tests')
+     }
+
+     tools {
+        maven 'maven-3.9.8'
+     }
+
+    stages {
+        stage('Build') {
+
+            when {
+                expression { BRANCH_NAME == 'main' }
+            }
+            steps {
+                echo "Building.. in Branch: ${BRANCH_NAME}"
+                echo "Credentials: ${SERVER_CREDENTIALS}"
+            }
+        }
+        stage('Test') {
+
+            when {
+                expression { params.RUN_TESTS == true }
+            }
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                echo "VERSION: ${params.VERSION}"
+                withCredentials([usernamePassword(credentialsId: 'server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    echo "Deploying to server with username: ${USERNAME} and password: ${PASSWORD}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+```
+![alt text](image-497.png)
+
+### Using External Scripts in Jenkinsfile
+![alt text](image-498.png)
+![alt text](image-499.png)
+![alt text](image-500.png)
+
+### User Input
+
+![alt text](image-501.png)
+
+```grovvy
+def gv
+
+pipeline {
+    agent any
+
+     environment {
+            // Manually define BRANCH_NAME if not set by Jenkins environment
+            BRANCH_NAME = "${env.BRANCH_NAME ?: 'main'}"
+            SERVER_CREDENTIALS = credentials('server-credentials')
+     }
+     parameters {
+        string(name: 'VERSION', defaultValue: '1.0.0', description: 'Version to build')
+        credentials(name: 'SERVER_CREDENTIALS', description: 'Credentials for server')
+        choice(name: 'CHOICE', choices: ['one', 'two', 'three'], description: 'Choose one')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'whether to run tests')
+     }
+
+     tools {
+        maven 'maven-3.9.8'
+     }
+
+    stages {
+        stage('Init'){
+            steps {
+                echo "Init.."
+                script {
+                    gv = load('cicd/script.groovy')
+                }
+            }
+        }
+
+        stage('Build') {
+
+            when {
+                expression { BRANCH_NAME == 'main' }
+            }
+            steps {
+                script {
+                    gv.buildApp()
+                }
+            }
+        }
+        stage('Test') {
+
+            when {
+                expression { params.RUN_TESTS == true }
+            }
+            steps {
+                script {
+                    gv.testApp()
+                }
+            }
+        }
+        stage('Deploy') {
+//             input {
+//                 message "which environment to deploy?"
+//                 ok "deploy"
+//                 parameters {
+//                     choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Choose environment to deploy')
+//                 }
+//             }
+
+            steps {
+                script {
+                    env.ENV = input(message: "which environment to deploy?", ok: "deploy", parameters: [choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Choose environment to deploy')])
+                    gv.deployApp()
+                    echo "Deploying to ${ENV}"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This will always run'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+```
+
+```groovy
+def buildApp() {
+    echo "Building.. in Branch: ${BRANCH_NAME}"
+}
+
+def testApp() {
+    echo 'Testing..'
+}
+
+def deployApp() {
+    echo 'Deploying....'
+    echo "VERSION: ${params.VERSION}"
+    withCredentials([usernamePassword(credentialsId: 'server-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        echo "Deploying to server with username: ${USERNAME} and password: ${PASSWORD}"
+    }
+}
+
+return this;
+```
 ## 10 - Create complete Pipeline
-
+![alt text](image-502.png)
 ## 11 - Intro to Multibranch Pipeline
+
+|CVE             |Group                                                                      |Artifact                                                                    |Version              |Fixed in version                                 |Fixable with version update only                                                                                                                                                                                                                         |Summary                                                                                           |Base score                |Depth                        |CWEs                                                               |
+|----------------|---------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------|-------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------|-----------------------------|-------------------------------------------------------------------|
+|The CVE number. |The first part of a dependency coordinate `com.google.guava:guava:VERSION`.|The second part of a dependency coordinate `com.google.guava:guava:VERSION`.|The resolved version.|The minimum version that is no longer vulnerable.|Whether the vulnerability is likely to be fixed by increasing the dependency version only, with no code modifications required. This is a heuristic which assumes that the dependency is accurately versioned according to [semver](https://semver.org/).|The summary of the CVE.                                                                           |The calculated base score.|Zero for direct dependencies.|Common Weakness Enumeration (CWE) identifiers; semicolon separated.|
+|CVE-2023-6378   |ch.qos.logback                                                             |logback-core                                                                |1.2.11               |1.2.13                                           |false                                                                                                                                                                                                                                                    |logback serialization vulnerability                                                               |HIGH                      |4                            |CWE-502                                                            |
+|CVE-2023-20883  |org.springframework.boot                                                   |spring-boot-autoconfigure                                                   |2.7.6                |2.7.12                                           |false                                                                                                                                                                                                                                                    |Spring Boot Welcome Page Denial of Service                                                        |HIGH                      |2                            |CWE-400                                                            |
+|CVE-2024-23672  |org.apache.tomcat.embed                                                    |tomcat-embed-websocket                                                      |9.0.69               |9.0.86                                           |false                                                                                                                                                                                                                                                    |Denial of Service via incomplete cleanup vulnerability in Apache Tomcat                           |MODERATE                  |2                            |CWE-459                                                            |
+|CVE-2023-24998  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.71                                           |false                                                                                                                                                                                                                                                    |Apache Commons FileUpload denial of service vulnerability                                         |HIGH                      |2                            |CWE-770                                                            |
+|CVE-2023-46589  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.83                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat Improper Input Validation vulnerability                                             |HIGH                      |2                            |CWE-20;CWE-444                                                     |
+|CVE-2024-34750  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.90                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat - Denial of Service                                                                 |HIGH                      |2                            |CWE-400;CWE-755                                                    |
+|CVE-2023-41080  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.80                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat Open Redirect vulnerability                                                         |MODERATE                  |2                            |CWE-601                                                            |
+|CVE-2023-42795  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.81                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat Incomplete Cleanup vulnerability                                                    |MODERATE                  |2                            |CWE-459                                                            |
+|CVE-2023-44487  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.81                                           |false                                                                                                                                                                                                                                                    |HTTP/2 Stream Cancellation Attack                                                                 |MODERATE                  |2                            |CWE-400                                                            |
+|CVE-2023-45648  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.81                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat Improper Input Validation vulnerability                                             |MODERATE                  |2                            |CWE-20                                                             |
+|CVE-2024-24549  |org.apache.tomcat.embed                                                    |tomcat-embed-core                                                           |9.0.69               |9.0.86                                           |false                                                                                                                                                                                                                                                    |Apache Tomcat Denial of Service due to improper input validation vulnerability for HTTP/2 requests|MODERATE                  |2                            |CWE-20                                                             |
+|CVE-2023-20863  |org.springframework                                                        |spring-expression                                                           |5.3.24               |5.3.27                                           |false                                                                                                                                                                                                                                                    |Spring Framework vulnerable to denial of service                                                  |HIGH                      |2                            |CWE-400;CWE-770;CWE-917                                            |
+|CVE-2023-20861  |org.springframework                                                        |spring-expression                                                           |5.3.24               |5.3.26                                           |false                                                                                                                                                                                                                                                    |Spring Framework vulnerable to denial of service via specially crafted SpEL expression            |MODERATE                  |2                            |CWE-917                                                            |
+|CVE-2023-6378   |ch.qos.logback                                                             |logback-classic                                                             |1.2.11               |1.2.13                                           |false                                                                                                                                                                                                                                                    |logback serialization vulnerability                                                               |HIGH                      |3                            |CWE-502                                                            |
+|CVE-2016-1000027|org.springframework                                                        |spring-web                                                                  |5.3.24               |6.0.0                                            |false                                                                                                                                                                                                                                                    |Pivotal Spring Framework contains unsafe Java deserialization methods                             |CRITICAL                  |1                            |CWE-502                                                            |
+|CVE-2024-22243  |org.springframework                                                        |spring-web                                                                  |5.3.24               |                                                 |false                                                                                                                                                                                                                                                    |Spring Web vulnerable to Open Redirect or Server Side Request Forgery                             |HIGH                      |1                            |                                                                   |
+|CVE-2024-22259  |org.springframework                                                        |spring-web                                                                  |5.3.24               |5.3.33                                           |false                                                                                                                                                                                                                                                    |Spring Framework URL Parsing with Host Validation Vulnerability                                   |HIGH                      |1                            |CWE-601                                                            |
+|CVE-2024-22262  |org.springframework                                                        |spring-web                                                                  |5.3.24               |5.3.34                                           |false                                                                                                                                                                                                                                                    |Spring Framework URL Parsing with Host Validation                                                 |HIGH                      |1                            |                                                                   |
+|CVE-2022-1471   |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |2.0                                              |false                                                                                                                                                                                                                                                    |SnakeYaml Constructor Deserialization Remote Code Execution                                       |HIGH                      |2                            |CWE-20;CWE-502                                                     |
+|CVE-2022-25857  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.31                                             |false                                                                                                                                                                                                                                                    |Uncontrolled Resource Consumption in snakeyaml                                                    |HIGH                      |2                            |CWE-400;CWE-776                                                    |
+|CVE-2022-38749  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.31                                             |false                                                                                                                                                                                                                                                    |snakeYAML before 1.31 vulnerable to Denial of Service due to Out-of-bounds Write                  |MODERATE                  |2                            |CWE-121;CWE-787                                                    |
+|CVE-2022-38750  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.31                                             |false                                                                                                                                                                                                                                                    |snakeYAML before 1.31 vulnerable to Denial of Service due to Out-of-bounds Write                  |MODERATE                  |2                            |CWE-121;CWE-787                                                    |
+|CVE-2022-38751  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.31                                             |false                                                                                                                                                                                                                                                    |snakeYAML before 1.31 vulnerable to Denial of Service due to Out-of-bounds Write                  |MODERATE                  |2                            |CWE-121;CWE-787                                                    |
+|CVE-2022-38752  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.32                                             |false                                                                                                                                                                                                                                                    |snakeYAML before 1.32 vulnerable to Denial of Service due to Out-of-bounds Write                  |MODERATE                  |2                            |CWE-121;CWE-787                                                    |
+|CVE-2022-41854  |org.yaml                                                                   |snakeyaml                                                                   |1.30                 |1.32                                             |false                                                                                                                                                                                                                                                    |Snakeyaml vulnerable to Stack overflow leading to denial of service                               |MODERATE                  |2                            |CWE-121;CWE-787                                                    |
+
 
 ## 12 - Jenkins Jobs Overview
 
